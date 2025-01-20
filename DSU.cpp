@@ -62,6 +62,12 @@ public:
             size[ulp_u] += size[ulp_v];
         }
     }
+    bool isConnected(int u, int v)
+    {
+        u = findUPar(u);
+        v = findUPar(v);
+        return u == v;
+    }
 };
 int main()
 {
