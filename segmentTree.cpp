@@ -89,7 +89,7 @@ struct segmenttree
 
         return;
     }
-
+    // update index element at index x to value y
     void update(int x, int y)
     {
         update(0, n - 1, 0, x, y);
