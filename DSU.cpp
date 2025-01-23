@@ -50,7 +50,9 @@ public:
         int ulp_u = findUPar(u);
         int ulp_v = findUPar(v);
         if (ulp_u == ulp_v)
+        {
             return;
+        }
         if (size[ulp_u] < size[ulp_v])
         {
             parent[ulp_u] = ulp_v;
