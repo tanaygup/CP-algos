@@ -1,70 +1,72 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 
-using namespace std;
-// we use 1 based indexing for fenwick tree internal purposes
-// array and answer etc normal input output we use 0 based indexing
-struct fenwick
-{
-    vector<int> fn;
+class FenwickTree {
+private:
+    std::vector<int> tree;
     int n;
 
-    void init(int n)
-    {
-        this->n = n + 1;
-        fn.resize(this->n, 0);
+    int lsb(int x) {
+        return x & (-x);
     }
 
-    void add(int x, int y)
-    {
-        x++; // 1 based index
-        while (x < n)
-        {
-            fn[x] += y;
-            x += (x & (-x)); // last set bit, going down the tree
+public:
+    FenwickTree(int size) {
+        n = size;
+        tree.resize(n + 1, 0); // Fenwick Tree is 1-based
+    }
+
+    // Update the Fenwick Tree by adding 'value' at index 'idx'
+    void update(int idx, int value) {
+        while (idx <= n) {
+            tree[idx] += value;
+            idx += lsb(idx);
         }
     }
 
-    // void add(int x, int y) {
-    // 	for (x++; x < n; x += (x & (-x))) fn[x] += y;
-    // }
-
-    int sum(int x)
-    {
-        x++; // 1 based index
-        int ans = 0;
-        while (x)
-        {
-            ans += fn[x];
-            x -= (x & (-x)); // last set bit, climbing up the tree
+    // Get the prefix sum from 1 to idx
+    int sum(int idx) {
+        int result = 0;
+        while (idx > 0) {
+            result += tree[idx];
+            idx -= lsb(idx);
         }
-        return ans;
+        return result;
     }
 
-    int sum(int l, int r)
-    {
-        return sum(r) - sum(l - 1);
+    // Get the sum in the range [left, right]
+    int rangeSum(int left, int right) {
+        return sum(right) - sum(left - 1);
+    }
+
+    // Lower bound: Smallest index where prefix sum >= value
+    int lowerBound(int value) {
+        int currentSum = 0;
+        int pos = 0;
+        
+        for (int i = 31; i >= 0; --i) {
+            int nextPos = pos + (1 << i);
+            if (nextPos <= n && currentSum + tree[nextPos] < value) {
+                currentSum += tree[nextPos];
+                pos = nextPos;
+            }
+        }
+
+        return pos + 1;
     }
 };
 
-int main()
-{
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+int main() {
+    int n = 10;
+    FenwickTree fenwick(n);
 
-    vector<int> v = {1, 2, 3, 4, 5, 6, 7};
-    fenwick tree;
-    tree.init(v.size());
+    fenwick.update(1, 5);  // Add 5 to index 1
+    fenwick.update(3, 7);  // Add 7 to index 3
 
-    for (int i = 0; i < v.size(); i++)
-    {
-        tree.add(i, v[i]);
-    }
+    // Query examples
+    std::cout << "Prefix sum up to index 3: " << fenwick.sum(3) << "\n";      // Output: 12
 
-    cout << tree.sum(3, 5) << '\n';
-
-    tree.add(4, -3);
-
-    cout << tree.sum(3, 5) << '\n';
+    std::cout << "Lower bound for prefix sum >= 8: " << fenwick.lowerBound(8) << "\n";  // Output: 3
 
     return 0;
 }
