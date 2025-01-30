@@ -120,6 +120,11 @@ ll powermod(ll x, ll y, ll p)
     }
     return res;
 }
+// Function to compute modular inverse of a under mod using Fermat's theorem
+ll mod_inv(ll a, ll mod)
+{
+    return powermod(a, mod - 2, mod); // Since MOD is prime, a^(MOD-2) ≡ a^(-1) (mod MOD)
+}
 // Function to return the count of number of 1's at the ith bit in range [1, n]
 long long getcount(long long n, int k)
 {
