@@ -18,10 +18,17 @@ CSES-
 
 
 Codeforces(add topic wise) -
+1. Trees-
+
+2. DP-
+   https://codeforces.com/contest/1673/problem/C
 
 Leetcode(add topic wise) -
 
 Others-
 1. Graphs-
 https://www.geeksforgeeks.org/problems/word-boggle4143/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card
+
+2. Greedy
+   https://www.spoj.com/problems/BUSYMAN/
 
