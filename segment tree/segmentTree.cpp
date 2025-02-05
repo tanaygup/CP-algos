@@ -94,6 +94,31 @@ struct segmenttree
     {
         update(0, n - 1, 0, x, y);
     }
+    // finding the first index with value greater than or equal to the given value
+    int get_first(int node, int start, int end, int l, int r, int x)
+    {
+        if (start > r || end < l) // no overlap
+            return -1;
+
+        if (st[node] < x) // segment max < x, skip this segment
+            return -1;
+
+        if (start == end) // leaf node
+            return start;
+
+        int mid = (start + end) / 2;
+
+        int left_result = get_first(2 * node + 1, start, mid, l, r, x);
+        if (left_result != -1) // if found in the left subtree
+            return left_result;
+
+        return get_first(2 * node + 2, mid + 1, end, l, r, x);
+    }
+
+    int get_first(int l, int r, int x)
+    {
+        return get_first(0, 0, n - 1, l, r, x);
+    }
 };
 
 int main()
