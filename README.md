@@ -32,3 +32,6 @@ https://www.geeksforgeeks.org/problems/word-boggle4143/1?itm_source=geeksforgeek
 2. Greedy
    https://www.spoj.com/problems/BUSYMAN/
 
+3. DP
+   Digit DP q - https://www.spoj.com/problems/CPCRC1C/
+
