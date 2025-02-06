@@ -35,3 +35,6 @@ https://www.geeksforgeeks.org/problems/word-boggle4143/1?itm_source=geeksforgeek
 3. DP
    Digit DP q - https://www.spoj.com/problems/CPCRC1C/
 
+4. Bits
+   https://www.codechef.com/problems/P5_172?tab=statement   
+
