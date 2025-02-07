@@ -11,10 +11,11 @@ CSES-
 4. DP- http://cses.fi/problemset/task/1636/
 
 5. Range-
+   https://cses.fi/problemset/task/1144/
 
-6. Graphs
+7. Graphs
 
-7. Trees-
+8. Trees-
 
 
 Codeforces(add topic wise) -
